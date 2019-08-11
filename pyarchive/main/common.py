@@ -60,9 +60,11 @@ class Main(object):
     """
 
     def __init__(self, **kwargs):
-        self.pyarchive_location = kwargs.get('pyarchive_location')
         self._identfile = ClassifyByExtension()
+
+        self.pyarchive_location = kwargs.get('pyarchive_location')
         self.srcfile = kwargs.get('srcfile')
+        self.noexec = kwargs.get('noexec')
 
     def identfile(self, target):
         """short description
@@ -77,15 +79,5 @@ class Main(object):
         :type arg3: int, float,...
         :returns: arg1/arg2 +arg3
         :rtype: int, float
-
-        Example::
-
-          lala
-
-        .. note:: can be useful to emphasize
-            important feature
-        .. seealso:: :class:
-        .. warning:: arg2 must be non-zero.
-        .. todo:: check that arg2 is non zero.
         """
         return os.path.join(self.pyarchive_location, self._identfile(target))

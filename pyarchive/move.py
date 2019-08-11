@@ -23,6 +23,7 @@ class Move(object):
     def __init__(self):
         self.config = pyarchive.config.ConfigMain(autoload=True)
         self.logger = logging.getLogger('pyarchive.move')
+        self.noexec = False
 
     def makedir(self, dirname):
         """fancy create directory
@@ -40,6 +41,10 @@ class Move(object):
 
         if os.path.isdir(dirname):
             self.logger.debug("path %s exists" % dirname)
+            return dirname
+
+        elif self.noexec:
+            self.logger.info("noexec>> create dir %s" % dirname)
             return dirname
 
         try:
@@ -76,6 +81,11 @@ class Move(object):
         dstfile = os.path.join(newdir, basename)
 
         self.logger.info("move {0} {1}".format(srcfile, dstfile))
+
+        if self.noexec:
+            self.logger.info("noexec>> move %s %s" % (srcfile, dstfile))
+            return
+
         shutil.move(srcfile, dstfile)
 
     def movefile(self, srcfile, destdir):
@@ -94,7 +104,13 @@ class Move(object):
 
         if not os.path.exists(dstfile):
             self.logger.info("move {0} {1}".format(srcfile, dstfile))
-            shutil.move(srcfile, dstfile)
+
+            if self.noexec:
+                self.logger.info("noexec>> move %s %s" % (srcfile, dstfile))
+
+            else:
+                shutil.move(srcfile, dstfile)
+
             return
 
         self.movedup(srcfile, destdir)

@@ -63,6 +63,8 @@ class Move(Main):
     def __init__(self, **kwargs):
         super(Move, self).__init__(**kwargs)
         self._act = PyArchiveAction()
+        if self.noexec:
+            self._act.noexec = True
 
     def main(self):
         """short description

@@ -74,7 +74,7 @@ base_options = [
 
 # export specific options
 mover_options = base_options + [
-    click.option('-b', '--bundles', 'bundles', is_flag=True, default=False, help="export to bundles"),
+    click.option('-n', '--noexec', 'noexec', is_flag=True, default=False, help="All talk an no action"),
     click.option('--outputdir', '-o', 'outputdir', help="where the export shut be put")
 ]
 
