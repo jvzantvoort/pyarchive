@@ -16,15 +16,14 @@ long_description = "coarse tool to move targets to a type specific location"
 setup(
     name='pyarchive',
     version=__version__,
-    description='GitLab Tools',
-    keywords='gitlab,pyarchive',
+    description=long_description,
+    keywords='pyarchive',
     install_requires=['click>=6.7,<7.0'],
     long_description=long_description,
     author='John van Zantvoort',
     author_email='john@vanzantvoort.org',
     url='https://github.com/jvzantvoort/pyarchive',
     packages=find_packages(exclude=['docs', 'docs-src', 'tests']),
-    # package_data={'pyarchive': ['main/*.sh']},
     license='MIT',
     test_suite="tests",
     entry_points='''
